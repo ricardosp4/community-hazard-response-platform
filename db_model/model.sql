@@ -66,7 +66,7 @@ CREATE TABLE assignment (
 -- Administrative Areas (from OSM)
 CREATE TABLE administrative_area (
     area_id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
+    name_area VARCHAR(100) NOT NULL,
     admin_level INTEGER NOT NULL,
     geom GEOMETRY(Polygon, 3763) NOT NULL
 );
@@ -75,7 +75,7 @@ CREATE TABLE administrative_area (
 CREATE TABLE facility (
     facility_id SERIAL PRIMARY KEY,
     osm_id BIGINT,
-    name VARCHAR(255),
+    name_fac VARCHAR(255),
     facility_type VARCHAR(50) NOT NULL,
     geom GEOMETRY(Point, 3763) NOT NULL
 );
