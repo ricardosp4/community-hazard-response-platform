@@ -8,7 +8,7 @@ CREATE TABLE app_user (
     username VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     hashed_password VARCHAR(255) NOT NULL,
-    username VARCHAR(50) NOT NULL,
+    firstname VARCHAR(50) NOT NULL,
     surname VARCHAR(50) NOT NULL,
     phone VARCHAR(20),
     home_geom GEOMETRY(Point, 3763),
