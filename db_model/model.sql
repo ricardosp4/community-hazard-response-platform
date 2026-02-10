@@ -1,6 +1,12 @@
 CREATE EXTENSION IF NOT EXISTS postgis;
 
 -- Tables
+DROP TABLE IF EXISTS assignments CASCADE;
+DROP TABLE IF EXISTS offer CASCADE;
+DROP TABLE IF EXISTS need CASCADE;
+DROP TABLE IF EXISTS app_user CASCADE;
+DROP TABLE IF EXISTS administrative_area CASCADE;
+DROP TABLE IF EXISTS facility CASCADE;
 
 -- App Users
 CREATE TABLE app_user (
@@ -47,7 +53,7 @@ CREATE TABLE offer (
 );
 
 -- Assignments (matching needs with offers)
-CREATE TABLE assignment (
+CREATE TABLE assignments (
     assignment_id SERIAL PRIMARY KEY,
     need_id INTEGER UNIQUE NOT NULL,
     offer_id INTEGER UNIQUE NOT NULL,
