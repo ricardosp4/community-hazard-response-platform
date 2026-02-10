@@ -11,7 +11,6 @@ CREATE TABLE app_user (
     firstname VARCHAR(50) NOT NULL,
     surname VARCHAR(50) NOT NULL,
     phone VARCHAR(20),
-    home_geom GEOMETRY(Point, 3763),
     is_verified BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -26,7 +25,7 @@ CREATE TABLE need (
     urgency VARCHAR(20) NOT NULL CHECK (urgency IN ('critical', 'high', 'medium', 'low')),
     geom GEOMETRY(Point, 3763) NOT NULL,
     address_point VARCHAR(500),
-    status_need VARCHAR(20) NOT NULL DEFAULT 'active' CHECK (status IN ('active', 'assigned', 'resolved', 'cancelled')),
+    status_need VARCHAR(20) NOT NULL DEFAULT 'active' CHECK (status_need IN ('active', 'assigned', 'resolved', 'cancelled')),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     CONSTRAINT fk_need_user FOREIGN KEY (user_id) REFERENCES app_user(user_id) ON DELETE CASCADE
@@ -39,8 +38,8 @@ CREATE TABLE offer (
     descrip TEXT NOT NULL,
     category VARCHAR(50) NOT NULL,
     available VARCHAR(20) NOT NULL CHECK (available IN ('immediate', 'today', 'this_week', 'on_call')),
-    geom GEOMETRY(Point, 3763) NOT NULL,
-    status_offer VARCHAR(20) NOT NULL DEFAULT 'available' CHECK (status IN ('available', 'assigned', 'unavailable')),
+    geom GEOMETRY(Point, 3763),
+    status_offer VARCHAR(20) NOT NULL DEFAULT 'available' CHECK (status_offer IN ('available', 'assigned', 'unavailable')),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     CONSTRAINT fk_offer_user FOREIGN KEY (user_id) REFERENCES app_user(user_id) ON DELETE CASCADE
@@ -52,7 +51,7 @@ CREATE TABLE assignment (
     assignment_id SERIAL PRIMARY KEY,
     need_id INTEGER UNIQUE NOT NULL,
     offer_id INTEGER UNIQUE NOT NULL,
-    status_ass VARCHAR(20) NOT NULL DEFAULT 'proposed' CHECK (status IN ('proposed', 'accepted', 'rejected', 'completed')),
+    status_ass VARCHAR(20) NOT NULL DEFAULT 'proposed' CHECK (status_ass IN ('proposed', 'accepted', 'rejected', 'completed')),
     assigned_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     completed_at TIMESTAMP WITH TIME ZONE,
     notes TEXT,
